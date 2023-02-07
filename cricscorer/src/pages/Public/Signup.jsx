@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../includes/img/Logo.png'
 import '../includes/css/Style.css'
-import axios from 'axios'
-
+import { userRegistrationValidation } from '../includes/Action/features/validations'
 
 const Signup = () => {
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -16,42 +15,6 @@ const Signup = () => {
     const [passworderr, setPasswordErr] = useState("");
     const [registermsg, setRegisterSuccess] = useState("");
     const [userexist, setUserExist] = useState("");
-
-    const passwordValidation = (pass) => {
-
-        if (pass.length >= 8) {
-
-            if (/[a-z]/.test(pass)) {
-
-                if (/[0-9]/.test(pass)) {
-
-                    if (/[A-Z]/.test(pass)) {
-
-                        if (/[#?!@$%^&*-]/.test(pass)) {
-
-                                    setPasswordErr(null);
-                                    SendRes();
-                        }
-                        else
-                            setPasswordErr("Password must contains a Special Character")
-                    }
-                    else
-                        setPasswordErr("Password must contais a Capital Letter")
-                }
-                else
-                    setPasswordErr("Password must contain a number");
-            }
-            else
-                setPasswordErr("Password must contains a Letter");
-        }
-        else
-            setPasswordErr("Password must be 8 character long");
-    }
-
-
-    const sleep = (ms) => {
-        return new Promise((resolve) => setTimeout(resolve, ms));
-    };
 
     const onChangeName = (e) => {
         setName(e.target.value);
@@ -66,25 +29,12 @@ const Signup = () => {
         setConfirmPassword(e.target.value);
     }
 
-    const SendRes = async () => {
-        const url = `http://localhost:5000/api/auth/userregister`;
-        const res = await axios.post(url, { name, email, password });
-
-        if (res.data === 'User Created Successfully') {
-            setRegisterSuccess("Account created successfully")
-            await sleep("3000")
-            navigate('/signin')
-        }
-        else {
-            setUserExist('User Already Existed')
-        }
-    }
-
     const handleSubmit = (e) => {
+
         e.preventDefault();
 
         if (confirmpassword === password) {
-            passwordValidation(password);
+            userRegistrationValidation(name, email, password, setPasswordErr, setRegisterSuccess, navigate, setUserExist);
         }
         else
             setPasswordErr("Password not matched");

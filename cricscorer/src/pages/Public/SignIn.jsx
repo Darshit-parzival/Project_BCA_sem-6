@@ -3,19 +3,17 @@ import { Link,useNavigate } from 'react-router-dom'
 import '../includes/css/Style.css'
 import Logo from '../includes/img/Logo.png'
 import { useState } from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import { login } from '../includes/Action/api/userApi'
 
 const SignIn = () => {
     
-    const user = useSelector(state => state.user);
     const dispatch = useDispatch();
+    const navigate=useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    
     const [loginErr, setLoginErr] = useState("");
-    const navigate=useNavigate();
     
     const onChangeEmail = (e) => {
         setEmail(e.target.value);
@@ -29,6 +27,7 @@ const SignIn = () => {
         e.preventDefault();
         login({email, password}, dispatch, navigate,setLoginErr);
     }
+    
     return (
         <div className='custom-container'>
             <div className='custom'>
