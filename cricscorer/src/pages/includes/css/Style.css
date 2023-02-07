@@ -1,15 +1,22 @@
-em{
+em {
     color: #5b03e4 !important;
     font-style: normal !important;
 }
-span{
-    color:rgb(198, 61, 255) !important;
+
+span {
+    color: rgb(198, 61, 255) !important;
 }
-textarea{
+
+textarea {
     width: 100% !important;
     height: 120px !important;
-    padding:0 0 0 68px !important;
+    padding: 0 0 0 68px !important;
 }
+
+h6{
+    font-size: 50px;
+}
+
 /* ======================== Navbar =========================== */
 .navbar-custom {
     background: linear-gradient(90deg, rgba(85, 0, 227, 1) 0%, rgba(198, 61, 255, 1) 100%) !important;
@@ -137,7 +144,7 @@ textarea{
     color: blue !important;
 }
 
-.custom-error{
+.custom-error {
     color: red;
     border-radius: 10px;
     border-style: double;
@@ -146,7 +153,7 @@ textarea{
     background-color: rgba(255, 83, 83, 0.377);
 }
 
-.custom-success{
+.custom-success {
     color: green;
     border-radius: 10px;
     border-style: double;
@@ -179,7 +186,47 @@ textarea{
     }
 }
 
-.custom-map{
+.custom-map {
     border-radius: 10px;
     height: 100%;
+}
+
+
+/* =============================Home PAge========================================= */
+
+.custom-home {
+    background: url(../img/wcup.jpg) no-repeat 0px 0px;
+    min-height: calc(100vh - 88.56px);
+    background-size: cover;
+    padding: 18em 0px 0;
+    text-align: center;
+}
+
+.custom-home-txt {
+    margin: 0 auto;
+    width: 63%;
+    font-family: "lucida calligraphy";
+}
+
+.custom-home-host{
+    background-color: rgb(0, 25, 183);
+    font-family: "lucida calligraphy";
+    color: white;
+    margin: 20px;
+    width: 150px;
+    font-size: 18px;
+    font-family: sans-serif;
+    border: #fff;
+    border-radius: 4px;
+}
+
+.custom-home-watch{
+    background-color: rgb(183, 0, 177);
+    color: white;
+    margin: 20px;
+    font-family: sans-serif;
+    width: 150px;
+    font-size: 18px;
+    border: #fff;
+    border-radius: 4px;
 }

@@ -7,6 +7,4 @@ router.post('/userregister', userregistration);
 
 router.post('/userlogin', userlogin);
 
-router.post('/adminlogin', adminlogin);
-
 module.exports = router

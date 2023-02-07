@@ -2,7 +2,6 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Routes, Route } from 'react-router-dom'
 import './Main.css'
-import AdminSignIn from './pages/Admin/AdminSignIn'
 import Contact from './pages/Public/Contact'
 import Forgot from './pages/Public/Forgot'
 import Home from './pages/Public/Home'
@@ -19,8 +18,8 @@ const Main = ({getIsAdminPanel}) => {
         <Route path='/signup' element={<Signup />} />
         <Route path='/forgot' element={<Forgot />} />
         <Route path='/contact' element={<Contact />} />
-        <Route path='/home' element={user!=="null" ? <Home /> : <SignIn />} />
-        <Route path='/admin' element={<AdminSignIn getIsAdminPanel={getIsAdminPanel} />} />
+        {/* <Route path='/home' element={user!=="null" ? <Home /> : <SignIn />} /> */}
+        <Route path='/home' element={ <Home /> } />
         <Route path='/' element={<Index />} />
       </Routes>
     </div>
