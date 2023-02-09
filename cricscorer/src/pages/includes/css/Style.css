@@ -148,7 +148,7 @@ h6{
 .custom-error {
     color: red;
     border-radius: 10px;
-    border-style: double;
+    border-style: groove;
     text-align: center;
     margin-top: 1.5rem;
     background-color: rgba(255, 83, 83, 0.377);
@@ -157,7 +157,7 @@ h6{
 .custom-success {
     color: green;
     border-radius: 10px;
-    border-style: double;
+    border-style: groove;
     text-align: center;
     margin-top: 1.5rem;
     background-color: rgba(112, 255, 83, 0.377);
@@ -223,6 +223,11 @@ h6{
 
 .hostindex{
     padding: 10px !important;
+}
+
+.host-index-container{
+    padding: 40px !important;
+    margin-top: 10px !important;
 }
 
 .hostindex-title{
