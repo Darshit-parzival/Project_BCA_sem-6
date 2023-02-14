@@ -12,7 +12,12 @@ const PlayersName = () => {
   const TeamBindex = Array.from({ length: TeamBpl }, (_, i) => 1)
 
   const [teamAnmfinal, setTeamANmFinal] = useState(Array(TeamApl).fill(''))
-  const [teamBnmfinal, setTeamBNmFinal] = useState(Array(TeamApl).fill(''))
+  const [teamBnmfinal, setTeamBNmFinal] = useState(Array(TeamBpl).fill(''))
+
+  const [teamAroll, setTeamARoll] = useState(Array(TeamApl).fill(''))
+  const [teamBroll, setTeamBRoll] = useState(Array(TeamBpl).fill(''))
+
+  const [Roll] = useState(null)
 
   const HandleInputAChange = (key, value) => {
     const UpdatedTeamANm = [...teamAnmfinal]
@@ -26,10 +31,22 @@ const PlayersName = () => {
     setTeamBNmFinal(UpdatedTeamBNm)
   }
 
+  const HandleRollA = (index, value) => {
+    const UpdatedTeamARoll = [...teamAroll]
+    UpdatedTeamARoll[index] = value
+    setTeamARoll(UpdatedTeamARoll)
+  }
+
+  const HandleRollB = (index, value) => {
+    const UpdatedTeamBRoll = [...teamBroll]
+    UpdatedTeamBRoll[index] = value
+    setTeamBRoll(UpdatedTeamBRoll)
+  }
+
   const HandleSubmit = (e) => {
     e.preventDefault()
-    console.log(teamAnmfinal)
-    console.log(teamBnmfinal)
+    console.log(teamAroll)
+    console.log(teamBroll)
   }
 
   return (
@@ -40,32 +57,41 @@ const PlayersName = () => {
             <div className='p-2 justify-content-center border border-3'>
               <h2 className='custom-form-caption'>{TeamA}</h2>
               <div className='d-flex '>
-                <div style={{paddingRight:"10px"}}>
+                <div style={{ paddingRight: "10px" }}>
                   {TeamAindex.map((input, index) => (
-                    <input type="text" key={index} onChange={(e) => HandleInputAChange(index, e.target.value)} value={teamAnmfinal[index]} placeholder='Player Name' name='name' className='custom-form-field' required />))}
+                    <input type="text" key={index} onChange={(e) => HandleInputAChange(index, e.target.value)} value={teamAnmfinal[index]} placeholder='Player Name' name='name' className='custom-form-field' />))}
                 </div>
                 <div>
-                  <div className="dropdown">
-                    {TeamAindex.map((button,index)=>(
-                      <button className="btn btn-secondary dropdown-toggle" key={index} style={{marginBottom:"10px",height:"50px"}} type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Roll
-                    </button>))}
-                    <ul className="dropdown-menu">
-                      <li><button className="dropdown-item" value="bat">Batsman</button></li>
-                      <li><button className="dropdown-item" value="bowl">Bowler</button></li>
-                      <li><button className="dropdown-item" value="all">All Rounder</button></li>
-                    </ul>
-                  </div>
+                  {TeamAindex.map((select,index) => (
+                    <select className="btn btn-secondary" key={index} name="roll" onChange={(e) => HandleRollA(index, e.target.value)} style={{ marginBottom: "10px", height: "50px", width: "auto" }}>
+                      <option hidden>{Roll || "Roll"}</option>
+                      <option value="bat">Batsman</option>
+                      <option value="bowl">Bowler</option>
+                      <option value="all">All Rounder</option>
+                    </select>))}
                 </div>
               </div>
             </div>
             <div className='p-2 justify-content-center border border-3'>
               <h2 className='custom-form-caption'>{TeamB}</h2>
-              {TeamBindex.map((input, index) => (
-                <input type="text" key={index} onChange={(e) => HandleInputBChange(index, e.target.value)} value={teamBnmfinal[index]} placeholder='Player Name' name='name' className='custom-form-field' required />))}
+              <div className='d-flex '>
+                <div style={{ paddingRight: "10px" }}>
+                  {TeamBindex.map((input, index) => (
+                    <input type="text" key={index} onChange={(e) => HandleInputBChange(index, e.target.value)} value={teamAnmfinal[index]} placeholder='Player Name' name='name' className='custom-form-field' />))}
+                </div>
+                <div>
+                  {TeamBindex.map((select, index) => (
+                    <select className="btn btn-secondary" key={index} name="roll" onChange={(e) => HandleRollB(index, e.target.value)} style={{ marginBottom: "10px", height: "50px", width: "auto" }}>
+                      <option hidden>{Roll || "Roll"}</option>
+                      <option value="bat">Batsman</option>
+                      <option value="bowl">Bowler</option>
+                      <option value="all">All Rounder</option>
+                    </select>))}
+                </div>
+              </div>
             </div>
           </div>
-          <button className='custom-form-submit'>LOGIN</button>
+          <button className='custom-form-submit'>SUBMIT</button>
         </form>
       </div>
     </div>
