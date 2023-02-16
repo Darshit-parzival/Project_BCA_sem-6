@@ -13,7 +13,7 @@ textarea {
     padding: 0 0 0 68px !important;
 }
 
-h6{
+h6 {
     font-size: 50px;
 }
 
@@ -209,7 +209,7 @@ h6{
     font-family: "lucida calligraphy";
 }
 
-.custom-home-host{
+.custom-home-host {
     background-color: rgb(0, 25, 183);
     font-family: "lucida calligraphy";
     color: white;
@@ -221,23 +221,55 @@ h6{
     border-radius: 4px;
 }
 
-.hostindex{
+.hostindex {
     padding: 10px !important;
 }
 
-.host-index-container{
+.host-index-container {
     padding: 40px !important;
     margin-top: 10px !important;
 }
 
-.hostindex-title{
+.hostindex-title {
     margin-top: -30px;
     margin-bottom: -45px;
     font-size: xx-large;
 }
 
-.team{
+.team {
     padding-bottom: 16px;
     font-weight: normal;
     font-size: 18px;
+}
+
+.vertical {
+    border-left: 2px solid gray;
+    height: auto;
+    padding-left: 10px;
+}
+
+.rollradio {
+    margin-bottom: 10px;
+    height: 50px;
+    width: 95%;
+}
+
+.toss-A {
+    background-color: rgba(85, 0, 227, 1);
+    color: white !important;
+}
+
+.toss-A:hover {
+    background-color: rgb(55, 0, 149);
+    color: white !important;
+}
+
+.toss-B {
+    background-color: rgba(198, 61, 255, 1);
+    color: white !important;
+}
+
+.toss-B:hover {
+    background-color: rgb(115, 0, 164);
+    color: white !important;
 }

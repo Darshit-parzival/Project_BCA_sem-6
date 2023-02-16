@@ -2,6 +2,12 @@ import React, { useState } from 'react'
 
 const PlayersName = () => {
 
+  sessionStorage.setItem("TeamAnm", "CSK")
+  sessionStorage.setItem("TeamApl", "5")
+  sessionStorage.setItem("TeamBnm", "MI")
+  sessionStorage.setItem("TeamBpl", "5")
+  sessionStorage.setItem("over", "5")
+
   const TeamApl = parseInt(sessionStorage.getItem("TeamApl"), 10)
   const TeamBpl = parseInt(sessionStorage.getItem("TeamBpl"), 10)
 
@@ -17,7 +23,11 @@ const PlayersName = () => {
   const [teamAroll, setTeamARoll] = useState(Array(TeamApl).fill(''))
   const [teamBroll, setTeamBRoll] = useState(Array(TeamBpl).fill(''))
 
-  const [Roll] = useState(null)
+  const [teamAWc, setTeamAWc] = useState(Array(TeamA).fill(''))
+  const [teamBWc, setTeamBWc] = useState(Array(TeamB).fill(''))
+
+  const [teamACap, setTeamACap] = useState(Array(TeamA).fill(''))
+  const [teamBCap, setTeamBCap] = useState(Array(TeamB).fill(''))
 
   const HandleInputAChange = (key, value) => {
     const UpdatedTeamANm = [...teamAnmfinal]
@@ -43,50 +53,106 @@ const PlayersName = () => {
     setTeamBRoll(UpdatedTeamBRoll)
   }
 
+  const HandleWcA=(index,value)=>{
+    const UpdatedTeamAWc=[...teamAWc]
+    UpdatedTeamAWc[index]=value
+    setTeamAWc(UpdatedTeamAWc)
+  }
+
+  const HandleWcB=(index,value)=>{
+    const UpdatedTeamBWc=[...teamBWc]
+    UpdatedTeamBWc[index]=value
+    setTeamBWc(UpdatedTeamBWc)
+  }
+
+  const HandleCapA=(index,value)=>{
+    const UpdatedTeamACap=[...teamACap]
+    UpdatedTeamACap[index]=value
+    setTeamACap(UpdatedTeamACap)
+  }
+
+  const HandleCapB=(index,value)=>{
+    const UpdatedTeamBCap=[...teamBCap]
+    UpdatedTeamBCap[index]=value
+    setTeamBCap(UpdatedTeamBCap)
+  }
+
   const HandleSubmit = (e) => {
     e.preventDefault()
-    console.log(teamAroll)
-    console.log(teamBroll)
   }
 
   return (
     <div className='custom-container'>
-      <div className='custom d-block w-34'>
+      <div className='custom d-block' style={{ width: "99%" }}>
         <form className='custom-form d-grid w-auto' onSubmit={HandleSubmit}>
           <div className='d-flex'>
             <div className='p-2 justify-content-center border border-3'>
-              <h2 className='custom-form-caption'>{TeamA}</h2>
-              <div className='d-flex '>
+              <h1 className='custom-form-caption'>{TeamA}</h1>
+              <div className='d-flex'>
                 <div style={{ paddingRight: "10px" }}>
+                  <span><h4>Player's Names</h4></span>
                   {TeamAindex.map((input, index) => (
                     <input type="text" key={index} onChange={(e) => HandleInputAChange(index, e.target.value)} value={teamAnmfinal[index]} placeholder='Player Name' name='name' className='custom-form-field' />))}
                 </div>
+                <div className='vertical'></div>
                 <div>
-                  {TeamAindex.map((select,index) => (
-                    <select className="btn btn-secondary" key={index} name="roll" onChange={(e) => HandleRollA(index, e.target.value)} style={{ marginBottom: "10px", height: "50px", width: "auto" }}>
-                      <option hidden>{Roll || "Roll"}</option>
+                  <span><h4>Roll</h4></span>
+                  {TeamAindex.map((select, index) => (
+                    <select className="btn btn-secondary rollradio" key={index} name="roll" onChange={(e) => HandleRollA(index, e.target.value)}>
+                      <option hidden>Roll</option>
                       <option value="bat">Batsman</option>
                       <option value="bowl">Bowler</option>
                       <option value="all">All Rounder</option>
                     </select>))}
+                </div>
+                <div className='vertical'></div>
+                <div className='d-grid'>
+                  <span><h4>WicketKeeper</h4></span>
+                  {TeamAindex.map((input, index) => (
+                    <input type="radio" key={index} value="wicketkeeper" name='wicketkeeper' className='rollradio' onChange={(e) => HandleWcA(index, e.target.value)} />
+                  ))}
+                </div>
+                <div className='vertical'></div>
+                <div className='d-grid'>
+                  <span><h4>Captain</h4></span>
+                  {TeamAindex.map((input, index) => (
+                    <input type="radio" key={index} value="captain" name='captain' className='rollradio' onChange={(e)=>HandleCapA(index,e.target.value)}/>
+                  ))}
                 </div>
               </div>
             </div>
             <div className='p-2 justify-content-center border border-3'>
-              <h2 className='custom-form-caption'>{TeamB}</h2>
-              <div className='d-flex '>
+              <h1 className='custom-form-caption'>{TeamB}</h1>
+              <div className='d-flex'>
                 <div style={{ paddingRight: "10px" }}>
+                  <span><h4>Player's Names</h4></span>
                   {TeamBindex.map((input, index) => (
-                    <input type="text" key={index} onChange={(e) => HandleInputBChange(index, e.target.value)} value={teamAnmfinal[index]} placeholder='Player Name' name='name' className='custom-form-field' />))}
+                    <input type="text" key={index} onChange={(e) => HandleInputBChange(index, e.target.value)} value={teamBnmfinal[index]} placeholder='Player Name' name='name' className='custom-form-field' />))}
                 </div>
+                <div className='vertical'></div>
                 <div>
+                  <span><h4>Roll</h4></span>
                   {TeamBindex.map((select, index) => (
-                    <select className="btn btn-secondary" key={index} name="roll" onChange={(e) => HandleRollB(index, e.target.value)} style={{ marginBottom: "10px", height: "50px", width: "auto" }}>
-                      <option hidden>{Roll || "Roll"}</option>
+                    <select className="btn btn-secondary rollradio" key={index} name="roll" onChange={(e) => HandleRollB(index, e.target.value)} >
+                      <option hidden>Roll</option>
                       <option value="bat">Batsman</option>
                       <option value="bowl">Bowler</option>
                       <option value="all">All Rounder</option>
                     </select>))}
+                </div>
+                <div className='vertical'></div>
+                <div className='d-grid p-1'>
+                  <span><h4>WicketKeeper</h4></span>
+                  {TeamBindex.map((input, index) => (
+                    <input type="radio" key={index} value="wicketkeeper" name='wicketkeeper' className='rollradio' onChange={(e) => HandleWcB(index, e.target.value)} />
+                  ))}
+                </div>
+                <div className='vertical'></div>
+                <div className='d-grid p-1'>
+                  <span><h4>Captain</h4></span>
+                  {TeamBindex.map((input, index) => (
+                    <input type="radio" key={index} value="captain" name='captain' className='rollradio' onChange={(e)=>HandleCapB(index,e.target.value)}/>
+                  ))}
                 </div>
               </div>
             </div>
@@ -95,6 +161,7 @@ const PlayersName = () => {
         </form>
       </div>
     </div>
+
   )
 }
 
