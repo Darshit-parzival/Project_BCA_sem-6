@@ -3,10 +3,12 @@ import Logo from '../includes/img/Logo.png'
 import '../includes/css/Style.css'
 import { HostIndexProcess } from '../includes/Action/features/hostIndexProcess'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 const HostIndex = () => {
 
   const navigate = useNavigate();
+  const Dispatch = useDispatch()
 
   const [teamA, setTeamA] = useState({ name: '', players: '' })
   const [teamB, setTeamB] = useState({ name: '', players: '' })
@@ -27,7 +29,7 @@ const HostIndex = () => {
 
     e.preventDefault()
 
-    HostIndexProcess(teamA, teamB, over, setErrMsg, navigate)
+    HostIndexProcess(teamA, teamB, over, setErrMsg, navigate, Dispatch)
   }
 
 

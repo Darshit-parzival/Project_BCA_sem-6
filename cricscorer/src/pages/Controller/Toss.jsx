@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import '../includes/css/Style.css'
-import {useNavigate} from 'react-router-dom'
-import {SecondStep} from '../includes/Action/api/hostApi'
-
+import { useNavigate } from 'react-router-dom'
+import { SecondStep } from '../includes/Action/api/hostApi'
+import { useDispatch } from 'react-redux'
 const Toss = () => {
 
   const navigate = useNavigate()
+  const Dispatch = useDispatch()
 
   const TeamA = sessionStorage.getItem("TeamAnm")
   const TeamB = sessionStorage.getItem("TeamBnm")
@@ -30,7 +31,7 @@ const Toss = () => {
   }
 
   const HandleSubmit = () => {
-    SecondStep(navigate,tossWon,teamChose)
+    SecondStep(navigate, tossWon, teamChose, Dispatch)
   }
   return (
     <div className='custom-container'>

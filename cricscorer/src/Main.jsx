@@ -16,6 +16,9 @@ import Signup from './pages/Public/Signup'
 
 const Main = () => {
   const user = useSelector(state => state.user.user)
+  const host = useSelector(state => state.host.host)
+  const toss = useSelector(state => state.toss.toss)
+
   return (
     <div className='main'>
       <Routes>
@@ -23,12 +26,12 @@ const Main = () => {
         <Route path='/signup' element={<Signup />} />
         <Route path='/forgot' element={<Forgot />} />
         <Route path='/contact' element={<Contact />} />
-        <Route path='/home' element={user ? <Home /> : <SignIn />} />
-        <Route path='/hostIndex' element={ <HostIndex /> } />
+        <Route path='/home' element= {<Home /> } />
+        <Route path='/hostIndex' element={<HostIndex /> } />
         <Route path='/playersName' element={ <PlayersName /> } />
-        <Route path='/toss' element={ <Toss /> } />
-        <Route path='/playersSelection' element={ <PlayersSelection /> } />
-        <Route path='/master' element={ <Master /> } />
+        <Route path='/toss' element={<Toss /> } />
+        <Route path='/playersSelection' element={<PlayersSelection />} />
+        <Route path='/master' element={<Master />} />
         <Route path='/' element={<Index />} />
       </Routes>
     </div>

@@ -2,17 +2,16 @@ import React, { useState } from 'react'
 
 const PlayersName = () => {
 
-  sessionStorage.setItem("TeamAnm", "CSK")
-  sessionStorage.setItem("TeamApl", "5")
-  sessionStorage.setItem("TeamBnm", "MI")
-  sessionStorage.setItem("TeamBpl", "5")
-  sessionStorage.setItem("over", "5")
+  const TeamApl = 5
+  const TeamBpl = 5
 
-  const TeamApl = parseInt(sessionStorage.getItem("TeamApl"), 10)
-  const TeamBpl = parseInt(sessionStorage.getItem("TeamBpl"), 10)
+  const TeamA = "CSK"
+  const TeamB = "MI"
+  // const TeamApl = parseInt(sessionStorage.getItem("TeamApl"), 10)
+  // const TeamBpl = parseInt(sessionStorage.getItem("TeamBpl"), 10)
 
-  const TeamA = sessionStorage.getItem("TeamAnm")
-  const TeamB = sessionStorage.getItem("TeamBnm")
+  // const TeamA = sessionStorage.getItem("TeamAnm")
+  // const TeamB = sessionStorage.getItem("TeamBnm")
 
   const TeamAindex = Array.from({ length: TeamApl }, (_, i) => 1)
   const TeamBindex = Array.from({ length: TeamBpl }, (_, i) => 1)
@@ -53,27 +52,27 @@ const PlayersName = () => {
     setTeamBRoll(UpdatedTeamBRoll)
   }
 
-  const HandleWcA=(index,value)=>{
-    const UpdatedTeamAWc=[...teamAWc]
-    UpdatedTeamAWc[index]=value
+  const HandleWcA = (index, value) => {
+    const UpdatedTeamAWc = [...teamAWc]
+    UpdatedTeamAWc[index] = value
     setTeamAWc(UpdatedTeamAWc)
   }
 
-  const HandleWcB=(index,value)=>{
-    const UpdatedTeamBWc=[...teamBWc]
-    UpdatedTeamBWc[index]=value
+  const HandleWcB = (index, value) => {
+    const UpdatedTeamBWc = [...teamBWc]
+    UpdatedTeamBWc[index] = value
     setTeamBWc(UpdatedTeamBWc)
   }
 
-  const HandleCapA=(index,value)=>{
-    const UpdatedTeamACap=[...teamACap]
-    UpdatedTeamACap[index]=value
+  const HandleCapA = (index, value) => {
+    const UpdatedTeamACap = [...teamACap]
+    UpdatedTeamACap[index] = value
     setTeamACap(UpdatedTeamACap)
   }
 
-  const HandleCapB=(index,value)=>{
-    const UpdatedTeamBCap=[...teamBCap]
-    UpdatedTeamBCap[index]=value
+  const HandleCapB = (index, value) => {
+    const UpdatedTeamBCap = [...teamBCap]
+    UpdatedTeamBCap[index] = value
     setTeamBCap(UpdatedTeamBCap)
   }
 
@@ -116,7 +115,7 @@ const PlayersName = () => {
                 <div className='d-grid'>
                   <span><h4>Captain</h4></span>
                   {TeamAindex.map((input, index) => (
-                    <input type="radio" key={index} value="captain" name='captain' className='rollradio' onChange={(e)=>HandleCapA(index,e.target.value)}/>
+                    <input type="radio" key={index} value="captain" name='captain' className='rollradio' onChange={(e) => HandleCapA(index, e.target.value)} />
                   ))}
                 </div>
               </div>
@@ -151,7 +150,7 @@ const PlayersName = () => {
                 <div className='d-grid p-1'>
                   <span><h4>Captain</h4></span>
                   {TeamBindex.map((input, index) => (
-                    <input type="radio" key={index} value="captain" name='captain' className='rollradio' onChange={(e)=>HandleCapB(index,e.target.value)}/>
+                    <input type="radio" key={index} value="captain" name='captain' className='rollradio' onChange={(e) => HandleCapB(index, e.target.value)} />
                   ))}
                 </div>
               </div>
