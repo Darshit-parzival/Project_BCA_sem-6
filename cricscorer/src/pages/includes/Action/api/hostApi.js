@@ -1,6 +1,6 @@
-import axios from "axios";
 import { hostSuccess } from "../features/hostSlice"
 import { tossSuccess } from "../features/tossSlice"
+import axios from "axios";
 
 export const FirstStep = async (data, navigate, Dispatch) => {
 
@@ -10,22 +10,58 @@ export const FirstStep = async (data, navigate, Dispatch) => {
     sessionStorage.setItem("TeamBpl", data.teamB.players)
     sessionStorage.setItem("over", data.over)
 
+    Dispatch(hostSuccess(data.teamA.name))
+    
+    const reqbody1 = {
+        "schema": {
+            "player_name": "String",
+            "roll": "String",
+            "iscap": "Number",
+            "run": "Number",
+            "wicket": "Number",
+            "batball": "Number",
+            "throwball": "Number",
+            "givenrun": "Number",
+            "isout": "String",
+            "four": "Number",
+            "six": "Number"
+        },
+        "collection": data.teamA.name,
+    }
+    const reqbody2 = {
+        "schema": {
+            "player_name": "String",
+            "roll": "String",
+            "iscap": "Number",
+            "run": "Number",
+            "wicket": "Number",
+            "batball": "Number",
+            "throwball": "Number",
+            "givenrun": "Number",
+            "isout": "String",
+            "four": "Number",
+            "six": "Number"
+        },
+        "collection": data.teamB.name,
+    }
 
-    await axios.post("http://localhost:5000/api/auth/teamA", {"name": "abc"})
+    await axios.post("http://localhost:5000/api/auth/teamName", reqbody1)
     .then(res => console.log(res.data))
     .catch(err => console.log(err));
-
-    Dispatch(hostSuccess(data.teamA.name))
-
-    navigate("/playersName")
+    
+    await axios.post("http://localhost:5000/api/auth/teamName", reqbody2)
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err));
+    
+        navigate("/playersName")
 }
-
-export const SecondStep = (navigate, tossWon, teamChose, Dispatch) => {
-
-    sessionStorage.setItem("TossWon", tossWon)
-    sessionStorage.setItem("TeamChose", teamChose)
-
-    Dispatch(tossSuccess(tossWon))
+    
+    export const SecondStep = (navigate, tossWon, teamChose, Dispatch) => {
+        
+        sessionStorage.setItem("TossWon", tossWon)
+        sessionStorage.setItem("TeamChose", teamChose)
+        
+        Dispatch(tossSuccess(tossWon))
 
     navigate("/playersSelection")
 }

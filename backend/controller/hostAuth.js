@@ -1,30 +1,30 @@
 const { default: mongoose } = require("mongoose")
 
-exports.teamA = (req, res) => {
-    try {
-        // const ModelSchema = {
-        //     schema: {
-        //         name: String,
-        //         roll: String,
-        //         wicketkeeper: String,
-        //         captain: String
-        //     },
-        // }
-        // const {collection,data}= req.body
-        console.log(req.body)
-        // const mySchema = new mongoose.Schema(ModelSchema)
-        // const DynamicModel = new mongoose.model(collection, mySchema)
-        // const teamA = new DynamicModel(req.body)
-        // teamA.save((err, doc) => {
-        //     if (err) return console.error(err)
-        //     res.send(doc)
-        // })
+exports.teamName = (req, res) => {
 
-    } catch (err) {
-        console.log(err)
-        res.send("error")
-    }
-    // console.log(req.body)
-    // console.log(schema)
+    const { schema, collection } = req.body;
+
+    const mySchema = new mongoose.Schema(schema);
+
+    const MyDynamicModel = mongoose.model(collection, mySchema);
+
+    const myDynamicDoc = new MyDynamicModel(req.body);
+
+    myDynamicDoc.save((err, doc) => {
+        if (err) return res.send("Not");
+        res.send("success")
+    });
+
+    console.log(req.body)
+}
+
+exports.playerNameA = async (req, res) => {
+
+}
+
+exports.playerNameB = (req, res) => {
+
+    console.log(req.body)
+        res.send("Two")
 
 }

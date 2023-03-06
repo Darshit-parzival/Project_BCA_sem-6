@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const PlayersName = () => {
 
-  const TeamApl = 5
-  const TeamBpl = 5
+  const navigate = useNavigate();
 
-  const TeamA = "CSK"
-  const TeamB = "MI"
-  // const TeamApl = parseInt(sessionStorage.getItem("TeamApl"), 10)
-  // const TeamBpl = parseInt(sessionStorage.getItem("TeamBpl"), 10)
+  const TeamApl = parseInt(sessionStorage.getItem("TeamApl"), 10)
+  const TeamBpl = parseInt(sessionStorage.getItem("TeamBpl"), 10)
 
-  // const TeamA = sessionStorage.getItem("TeamAnm")
-  // const TeamB = sessionStorage.getItem("TeamBnm")
+  const TeamA = sessionStorage.getItem("TeamAnm")
+  const TeamB = sessionStorage.getItem("TeamBnm")
 
   const TeamAindex = Array.from({ length: TeamApl }, (_, i) => 1)
   const TeamBindex = Array.from({ length: TeamBpl }, (_, i) => 1)
@@ -76,8 +74,19 @@ const PlayersName = () => {
     setTeamBCap(UpdatedTeamBCap)
   }
 
-  const HandleSubmit = (e) => {
+  const HandleSubmit = async (e) => {
     e.preventDefault()
+
+    sessionStorage.setItem(TeamA, JSON.stringify(teamAnmfinal))
+    sessionStorage.setItem(TeamB, JSON.stringify(teamBnmfinal))
+    sessionStorage.setItem(TeamA + "Roll", JSON.stringify(teamAroll))
+    sessionStorage.setItem(TeamB + "Roll", JSON.stringify(teamBroll))
+    sessionStorage.setItem(TeamA + "Wc", JSON.stringify(teamAWc))
+    sessionStorage.setItem(TeamB + "Wc", JSON.stringify(teamBWc))
+    sessionStorage.setItem(TeamA + "Cap", JSON.stringify(teamACap))
+    sessionStorage.setItem(TeamB + "Cap", JSON.stringify(teamBCap))
+
+    navigate('/toss')
   }
 
   return (
@@ -108,14 +117,14 @@ const PlayersName = () => {
                 <div className='d-grid'>
                   <span><h4>WicketKeeper</h4></span>
                   {TeamAindex.map((input, index) => (
-                    <input type="radio" key={index} value="wicketkeeper" name='wicketkeeper' className='rollradio' onChange={(e) => HandleWcA(index, e.target.value)} />
+                    <input type="radio" key={index} value="wicketkeeper" name='wicketkeeperA' className='rollradio' onChange={(e) => HandleWcA(index, e.target.value)} />
                   ))}
                 </div>
                 <div className='vertical'></div>
                 <div className='d-grid'>
                   <span><h4>Captain</h4></span>
                   {TeamAindex.map((input, index) => (
-                    <input type="radio" key={index} value="captain" name='captain' className='rollradio' onChange={(e) => HandleCapA(index, e.target.value)} />
+                    <input type="radio" key={index} value="captain" name='captainA' className='rollradio' onChange={(e) => HandleCapA(index, e.target.value)} />
                   ))}
                 </div>
               </div>
@@ -143,14 +152,14 @@ const PlayersName = () => {
                 <div className='d-grid p-1'>
                   <span><h4>WicketKeeper</h4></span>
                   {TeamBindex.map((input, index) => (
-                    <input type="radio" key={index} value="wicketkeeper" name='wicketkeeper' className='rollradio' onChange={(e) => HandleWcB(index, e.target.value)} />
+                    <input type="radio" key={index} value="wicketkeeper" name='wicketkeeperB' className='rollradio' onChange={(e) => HandleWcB(index, e.target.value)} />
                   ))}
                 </div>
                 <div className='vertical'></div>
                 <div className='d-grid p-1'>
                   <span><h4>Captain</h4></span>
                   {TeamBindex.map((input, index) => (
-                    <input type="radio" key={index} value="captain" name='captain' className='rollradio' onChange={(e) => HandleCapB(index, e.target.value)} />
+                    <input type="radio" key={index} value="captain" name='captainB' className='rollradio' onChange={(e) => HandleCapB(index, e.target.value)} />
                   ))}
                 </div>
               </div>
